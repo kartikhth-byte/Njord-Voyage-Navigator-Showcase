@@ -16,16 +16,7 @@ Frontend assets are produced by Vite. Database/storage and edge functions are se
 
 ## Career application flow
 
-```mermaid
-flowchart TD
-    A[Sea-career form] --> B[Validate request]
-    B -->|CV attached| C[Upload private CV]
-    B -->|No CV| D[Save application]
-    C --> D
-    D --> E[Notify recruitment]
-    E --> F[Try applicant acknowledgement]
-    F --> G[Return success]
-```
+![Career application flow with an optional CV upload bypass](../assets/career.svg)
 
 The server checks required fields and email shape. An optional CV is restricted by filename extension to PDF/DOCX and by size to 10 MiB (the UI calls this 10 MB). These are not malware scanning or full document-content validation. A honeypot branch returns apparent success without processing; normal validation failures return an error before persistence.
 
@@ -33,17 +24,7 @@ CV upload precedes the database insert, which precedes the recruitment email. Th
 
 ## Newsletter processing
 
-```mermaid
-flowchart TD
-    A[Select articles] --> B[Check admin]
-    B -->|Test mode| C[Preview email]
-    B -->|Bulk mode| D[Send record]
-    D --> E[Active batch]
-    E --> F[Send and log]
-    F --> G[Browser progress]
-    G -->|More remain| D
-    G -->|Done| H[Review history]
-```
+![Newsletter test preview and browser-driven bulk batches](../assets/newsletter.svg)
 
 The loop back to the send record is a **new browser request**, not an autonomous background worker. Bulk requests take at most 20 recipients, send sequentially, and wait 250 ms between attempts. Article ordering follows staff selection. Test mode bypasses the bulk-send ledger. Per-recipient success/failure records support history and progress.
 

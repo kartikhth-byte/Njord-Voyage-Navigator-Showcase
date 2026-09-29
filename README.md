@@ -29,14 +29,7 @@ Counts describe code scope, not users, traffic, or deployed services. The exampl
 
 ## How it fits together
 
-```mermaid
-flowchart TD
-    A[Visitors and staff] --> B[React website]
-    B --> C[Supabase data and files]
-    B --> D[Edge functions]
-    D --> C
-    D --> E[Email integration]
-```
+![Architecture overview: website connects to data, edge functions, and email](assets/overview.svg)
 
 Public pages read content directly; privileged workflows cross explicit backend boundaries. Static frontend hosting and deployed configuration are not independently verified. [Detailed data flows](docs/architecture.md)
 
