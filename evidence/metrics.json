@@ -1,0 +1,65 @@
+{
+  "review_date": "2026-09-29",
+  "source_revision": "c8731a652d8ef2241b4bf51ae35f91ed0e4f0dec",
+  "scope": "Static source review and local validation; live deployment not verified",
+  "source_inventory": {
+    "route_declarations": 37,
+    "administrative_routes": 15,
+    "other_explicit_routes": 21,
+    "catch_all_routes": 1,
+    "edge_function_entrypoints": 7,
+    "sql_migration_files": 35,
+    "test_spec_files_found": 0,
+    "github_actions_runs_reported": 0
+  },
+  "local_validation": {
+    "node": "24.5.0",
+    "npm": "11.5.1",
+    "build": {
+      "executions": 1,
+      "exit_code": 0,
+      "large_chunk_warning": true,
+      "main_js_kb_reported": 882.57,
+      "main_js_gzip_kb_reported": 245.4
+    },
+    "lint": {
+      "executions": 1,
+      "exit_code": 1,
+      "errors": 28,
+      "warnings": 18
+    }
+  },
+  "synthetic_example": {
+    "kind": "new illustrative model, not production implementation",
+    "unique_scenarios": 7,
+    "executions_per_scenario": 1,
+    "passed": 7,
+    "failed": 0,
+    "stable_list_scenario": {
+      "unique_synthetic_ids": 45,
+      "batch_sizes": [
+        20,
+        20,
+        5
+      ],
+      "simulated_sent": 44,
+      "simulated_failed": 1
+    },
+    "mutation_diagnostic": "Removing a previously processed ID shifts the active-list offset and skips one remaining ID"
+  },
+  "sources": {
+    "routes": "src/App.tsx",
+    "functions": "supabase/functions/*/index.ts",
+    "migrations": "supabase/migrations/*.sql",
+    "batch_logic": "supabase/functions/send-newsletter/index.ts",
+    "continuation": "src/pages/admin/NewsCMS.tsx",
+    "public_diagnostic": "examples/newsletter_batches.mjs"
+  },
+  "limitations": [
+    "No live backend or email validation",
+    "No production outcome dataset",
+    "Synthetic tests do not measure end-to-end quality",
+    "Existing lint failures remain",
+    "No claim of sole authorship or verified deployment"
+  ]
+}
