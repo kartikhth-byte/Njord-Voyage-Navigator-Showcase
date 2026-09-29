@@ -35,14 +35,14 @@ CV upload precedes the database insert, which precedes the recruitment email. Th
 
 ```mermaid
 flowchart TD
-    A[Staff selects articles] --> B[Authenticate and check role]
-    B -->|Test mode| C[Send one preview email]
-    B -->|Bulk mode| D[Load or create send record]
-    D --> E[Select next active batch]
-    E --> F[Send and record outcomes]
-    F --> G[Return progress to browser]
+    A[Select articles] --> B[Check admin]
+    B -->|Test mode| C[Preview email]
+    B -->|Bulk mode| D[Send record]
+    D --> E[Active batch]
+    E --> F[Send and log]
+    F --> G[Browser progress]
     G -->|More remain| D
-    G -->|Done| H[Staff reviews history]
+    G -->|Done| H[Review history]
 ```
 
 The loop back to the send record is a **new browser request**, not an autonomous background worker. Bulk requests take at most 20 recipients, send sequentially, and wait 250 ms between attempts. Article ordering follows staff selection. Test mode bypasses the bulk-send ledger. Per-recipient success/failure records support history and progress.
