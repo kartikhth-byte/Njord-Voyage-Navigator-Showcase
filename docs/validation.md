@@ -8,14 +8,16 @@ Reviewed on 2026-09-29 at private source revision `c8731a652d8ef2241b4bf51ae35f9
 
 The repository README is a technology list, not a product specification. Review therefore used the route registry, page implementations, package lockfile, edge functions, SQL migrations, and configuration. No applicable AGENTS.md was found. No test/spec files, evaluation dataset, or committed CI workflow was found; the GitHub Actions API reported zero workflow runs at review time. This does not establish that no external or manual testing has ever occurred.
 
-| Claim | Method and denominator | Result |
-|---|---|---|
-| Route surface | Count declarations in `src/App.tsx` | 37 total: 15 administrative, 21 other explicit, 1 catch-all |
-| Function scope | Count `supabase/functions/*/index.ts` | 7 source entrypoints; deployment not verified |
-| Schema history | Count SQL files in `supabase/migrations` | 35 migrations; not 35 tables or deployed changes |
-| Build | One local `npm run build` after locked install | Exit 0 |
-| Lint | One local `npm run lint` | Exit 1; 28 errors, 18 warnings |
-| Diagnostic example | Seven distinct synthetic scenarios, one execution each | 7 passed, 0 failed |
+| Check | Result and scope |
+|---|---|
+| Routes | 37 declarations: 15 administrative, 21 other explicit, 1 catch-all |
+| Functions | 7 source entrypoints; deployment not verified |
+| Migrations | 35 SQL files; not 35 tables or deployed changes |
+| Build | One local run; exit 0 |
+| Lint | One local run; exit 1; 28 errors, 18 warnings |
+| Example | 7 synthetic scenarios; 7 passed, 0 failed |
+
+Inventory method: count route declarations in `src/App.tsx`, edge-function entrypoints in the functions directory, and SQL files in the migrations directory. Exact source-path patterns are recorded in [the aggregate evidence](../evidence/metrics.json). Each scenario runs once per example invocation.
 
 ## Application checks actually conducted
 
